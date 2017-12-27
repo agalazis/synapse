@@ -1,0 +1,15 @@
+<ngf-layout>
+  <ngf-sidenav>
+    <ngf-nav-item routerLink="/">
+      Synapse Promotion Service
+    </ngf-nav-item>
+    <ngf-nav-item *ngFor="let page of pages"
+                  [routerLink]="page.path"
+                  [hint]="page.hint"
+                  [link]="page.link"
+    >
+      {{ page.label }}
+    </ngf-nav-item>
+  </ngf-sidenav>
+  <router-outlet></router-outlet>
+</ngf-layout>

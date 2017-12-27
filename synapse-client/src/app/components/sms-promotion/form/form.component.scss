@@ -1,0 +1,23 @@
+form {
+  .form-input {
+    &-error{
+      position: absolute;
+      width: 100%;
+      overflow: hidden;
+      font-size: 75%;
+    }
+    padding-bottom: 15px;
+  }
+  .form-status{
+    max-width:170px
+  }
+
+  .buttons {
+    margin-top: 20px;
+  }
+
+  .mat-radio-group {
+    display: block;
+    margin-bottom: 20px;
+  }
+}

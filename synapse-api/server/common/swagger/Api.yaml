@@ -1,0 +1,101 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Synapse HTTP API 
+  description: Synapse. Sending coupon codes is not rocket science
+basePath: /api
+
+tags:
+  - name: sms-promotion
+    description: Endpoinds that suuport sms promtions
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+definitions:
+  Error:
+    type: object
+    title: Error
+    required:
+      - message
+    properties:
+      name:
+        type: string
+        description: Status name     
+      message:
+        type: string
+        description: Error message
+  SMSPromotion:
+    type: object
+    title: SmsPromotion
+    required:
+      - phoneNumber
+      - satisfyAgeRestriction
+      - acceptTermsOfUse
+    properties:
+      phoneNumber:
+        type: string
+        description: The phone number to send the promo code to
+      satisfyAgeRestriction:
+        type: boolean
+        description: Whether age restriction is satisfied
+      acceptTermsOfUse:
+        type: boolean
+        description: Whether terms of use are accepted
+  SmsPromotionResponse:
+    type: object
+    title: SmsPromotionResponse
+    required:
+      - sid
+      - to
+      - status
+    properties:
+      sid:
+        type: string
+        description: Message sid
+      dateCreated:
+        type: string
+        description: The date the promo message was created
+      dateUpdated:
+        type: string
+        description: The date the promo message was last udated
+      dateSent:
+        type: string
+        description: The date the promo message was sent
+      to:
+        type: string
+        description: The phone number the promo code was sent to
+      status:
+        type: string
+        description: The current status of the message
+
+paths:
+  /sms-promotion:
+    post:
+      tags:
+        - sms-promotion
+      description: Send a new promotion message
+      parameters:
+        - name: body
+          Description: Details of SMS promotion request
+          in: body
+          required: true
+          schema: 
+            $ref: "#/definitions/SMSPromotion"
+      responses:
+        200:
+          description: Returns all examples
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/SmsPromotionResponse'
+        422:
+          description: Uprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/Error'         
+
+        

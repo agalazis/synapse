@@ -1,0 +1,14 @@
+<mat-card class="promo">
+  <mat-card-content>
+    <sms-promotion-form 
+      class="page" 
+      [formState]="formState$ | async"
+      [statusText]="createStatusText$ | async"
+      [isSuccessful] = "createIsSuccessful$ | async"
+      [isPending] = "createIsPending$ | async"
+      (create)="create($event)"
+      (reset)="reset($event)"
+    >
+    </sms-promotion-form>
+  </mat-card-content>
+</mat-card>
